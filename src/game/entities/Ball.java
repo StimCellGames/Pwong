@@ -3,6 +3,8 @@ package game.entities;
 import java.awt.Graphics;
 
 public class Ball extends Entity {
+	
+	int xVel, yVel;
 
 	@Override
 	public void init(int x, int y) {
@@ -14,12 +16,18 @@ public class Ball extends Entity {
 
 	@Override
 	public void update() {
-		
+		x += xVel;
+		y += yVel;
 	}
 
 	@Override
 	public void render(Graphics g) {
 		g.drawOval(x, y, width, height);
+	}
+	
+	public void flip() {
+		xVel *= -1;
+		yVel *= -1;
 	}
 
 }

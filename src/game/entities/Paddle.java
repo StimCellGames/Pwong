@@ -26,7 +26,9 @@ public class Paddle extends Entity {
 	@Override
 	public void update() {
 		if(paddleID == 1) {
-			if(keyboard.isKeyDown(KeyEvent.VK_W)) y--;
+			if(keyboard.isKeyDown(KeyEvent.VK_W)) {
+				y--;
+			}
 			if(keyboard.isKeyDown(KeyEvent.VK_S)) y++;
 		}
 		
