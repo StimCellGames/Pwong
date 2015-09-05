@@ -4,7 +4,7 @@ import java.awt.Graphics;
 
 public class Ball extends Entity {
 	
-	int xVel, yVel;
+	int xVel = 1, yVel = 1;
 
 	@Override
 	public void init(int x, int y) {
