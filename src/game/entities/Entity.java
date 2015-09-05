@@ -7,7 +7,7 @@ public abstract class Entity {
 	protected int x, y;
 	protected int width, height;
 	
-	public abstract void init();
+	public abstract void init(int x, int y);
 	public abstract void update();
 	public abstract void render(Graphics g);
 	
