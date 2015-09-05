@@ -1,23 +1,28 @@
 package game;
 import java.awt.Canvas;
 import java.awt.Dimension;
-import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.image.BufferStrategy;
 
 import javax.swing.JFrame;
 
+import game.input.Keyboard;
+
 /*
  * All credit goes to Liam Maclean
  */
+@SuppressWarnings("serial")
 public class Game extends Canvas implements Runnable{
-	Thread thread;
-	JFrame frame;
+	private Thread thread;
+	private JFrame frame;
+	private Keyboard key;
 	
 	public Game() {
 		Dimension size = new Dimension(800,600);
 		setPreferredSize(size);
 		frame = new JFrame();
+		key = new Keyboard();
+		addKeyListener(key);
 	}
 	
 	public synchronized void start() {
