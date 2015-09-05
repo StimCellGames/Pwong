@@ -22,6 +22,8 @@ public class Game extends Canvas implements Runnable{
 
 	private Paddle left,right;
 	private Ball ball;
+	
+	private int pointsP1, pointsP2;
 
 	public Game() {
 		Dimension size = new Dimension(800,600);
@@ -35,7 +37,7 @@ public class Game extends Canvas implements Runnable{
 		ball = new Ball();
 
 		left.init(0, 0);
-		right.init(750, 0);
+		right.init(780, 0);
 		ball.init(400, 300);
 	}
 
@@ -77,7 +79,10 @@ public class Game extends Canvas implements Runnable{
 		left.render(g);
 		right.render(g);
 		ball.render(g);
-
+		
+		g.setColor(Color.BLACK);
+		g.drawString("Points P1: " + pointsP1 + " | Points P2: " + pointsP2, 320, 10);
+		
 		g.dispose();
 		bs.show();
 	}
@@ -93,16 +98,27 @@ public class Game extends Canvas implements Runnable{
 		if(ball.getY()<0) ball.flipY();
 		if(ball.getY() + ball.getHeight() >600) ball.flipY();
 		
-		if(ball.getX()<0) ball.flipX();
-		if(ball.getX() + ball.getWidth() >800) ball.flipX();
+		if(ball.getX()<0) { 
+			ball.flipX();
+			pointsP2++;
+		}
+		
+		if(ball.getX() + ball.getWidth() >800) {
+			ball.flipX();
+			pointsP1++;
+		}
 	}
 
 	public void collision(Paddle paddle) {
 		if(paddle.bounds().intersects(ball.bounds())) {
 			ball.flipX();
 			ball.flipY();
-
 		}
+		
+		if(paddle.getY() < 0) paddle.setCanMove(false);
+		else paddle.setCanMove(true);
+		if(paddle.getY() > 800 - paddle.getHeight()) paddle.setCanMove(false);
+		else paddle.setCanMove(true);
 
 		
 	}
@@ -110,7 +126,7 @@ public class Game extends Canvas implements Runnable{
 	public static void main(String[] args) {
 		Game game = new Game();
 		game.frame.setResizable(false);
-		game.frame.setTitle("yourmom");
+		game.frame.setTitle("Pong | By: Evan \"Zormion\" Dawson & Liam \"TheLetterSix\" Maclean September 5th 2015");
 		game.frame.add(game);
 		game.frame.pack();
 		game.frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
