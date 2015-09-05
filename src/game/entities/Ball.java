@@ -25,9 +25,12 @@ public class Ball extends Entity {
 		g.drawOval(x, y, width, height);
 	}
 	
-	public void flip() {
-		xVel *= -1;
+	public void flipY() {
 		yVel *= -1;
+	}
+	
+	public void flipX() {
+		xVel *= -1;
 	}
 
 }

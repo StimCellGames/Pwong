@@ -68,7 +68,7 @@ public class Game extends Canvas implements Runnable{
 			createBufferStrategy(3);
 			return;
 		}
-	
+
 		Graphics2D g = (Graphics2D)bs.getDrawGraphics();
 		g.setColor(Color.white);
 		g.fillRect(0, 0, 800, 600);
@@ -86,6 +86,22 @@ public class Game extends Canvas implements Runnable{
 		left.update();
 		right.update();
 		ball.update();
+		collision(left);
+		collision(right);
+		
+		
+		if(ball.getY()<0) ball.flipY();
+		if(ball.getY() + ball.getHeight() >600) ball.flipY();
+	}
+
+	public void collision(Paddle paddle) {
+		if(paddle.bounds().intersects(ball.bounds())) {
+			ball.flipX();
+			ball.flipY();
+
+		}
+
+		
 	}
 
 	public static void main(String[] args) {
