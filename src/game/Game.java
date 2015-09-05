@@ -92,6 +92,9 @@ public class Game extends Canvas implements Runnable{
 		
 		if(ball.getY()<0) ball.flipY();
 		if(ball.getY() + ball.getHeight() >600) ball.flipY();
+		
+		if(ball.getX()<0) ball.flipX();
+		if(ball.getX() + ball.getWidth() >800) ball.flipX();
 	}
 
 	public void collision(Paddle paddle) {
