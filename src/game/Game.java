@@ -1,5 +1,6 @@
 package game;
 import java.awt.Canvas;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics2D;
 import java.awt.image.BufferStrategy;
@@ -34,7 +35,7 @@ public class Game extends Canvas implements Runnable{
 		ball = new Ball();
 
 		left.init(0, 0);
-		right.init(700, 0);
+		right.init(750, 0);
 		ball.init(400, 300);
 	}
 
@@ -67,7 +68,11 @@ public class Game extends Canvas implements Runnable{
 			createBufferStrategy(3);
 			return;
 		}
+	
 		Graphics2D g = (Graphics2D)bs.getDrawGraphics();
+		g.setColor(Color.white);
+		g.fillRect(0, 0, 800, 600);
+		g.setColor(Color.black);
 
 		left.render(g);
 		right.render(g);
